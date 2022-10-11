@@ -17,15 +17,11 @@ start_libs = (
 
 def helper(d, pkg, path):
     if pkg not in d:
+        path += f" <=== {pkg}"
         path += " <=== " + pkg
-        print path
         return
 
-    if not path:
-        path += pkg
-    else:
-        path += " <=== " + pkg
-
+    path += f" <=== {pkg}" if path else pkg
     for v in d.get(pkg):
         helper(d, v, path)
 
